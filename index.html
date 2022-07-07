@@ -8,13 +8,37 @@
 </head>
 <body>
     <script>
-        
+                
         // create an array with the three options (Rock, Paper, Scissors)
+        const choices = ["rock", "paper", "scissors"];
+        console.log(choices);
 
         // user chooses an option between (Rock, Paper, Scissors)
+        var max_count = 5;
+
+        function userPlay() {
+            userChoice = prompt("Choose Rock, Paper, or Scissors! or die.");
+            if (userChoice === 'rock') {
+                alert('you chose rock');
+            } else if (userChoice === 'paper') {
+                alert('You chose paper');
+            } else if (userChoice === 'scissors') {
+                alert('You chose scissors');
+            } else {
+                alert('Not a valid response. Enter a valid response to live.')
+                if (--max_count > 0)
+                    userPlay()
+            }
+        }
 
         // computer randomly chooses an option between (Rock, Paper, Scissors)
-        
+        function computerPlay() {
+            comChoice = choices[Math.floor(Math.random() * choices.length)];
+            console.log(comChoice);
+        }
+
+        userPlay();
+        computerPlay();
         // rock beats scissors
         // paper beats rock
         // scissors beats paper
