@@ -8,20 +8,24 @@
 </head>
 <body>
     <script>
-    var max_count = 5;
-
+    let userScore = 0;
+    let compScore = 0;
+    let roundWinner = '';
+    let max_count = 5;
+    
     function game() {
         // create an array with the three options (Rock, Paper, Scissors)
+        
         const choices = ["rock", "paper", "scissors"];
         console.log(choices);
-
+       
         // user chooses an option between (Rock, Paper, Scissors)
         
-
         function userPlay() {
-            userChoice = prompt("Choose Rock, Paper, or Scissors! or die.");
-            if (userChoice === 'rock' || userChoice === 'paper' || userChoice === 'scissors') {
-            console.log(userChoice);
+            userInput = prompt("Choose Rock, Paper, or Scissors! or die.");
+            userChoice = userInput.toLowerCase();
+            if (userChoice === 'rock' || userChoice === 'paper' || userChoice === 'scissors') {   
+                userChoice = userChoice.charAt(0).toUpperCase() + userChoice.slice(1);         
             } else {
                 alert('Not a valid response. Enter a valid response to live.')
                 if (--max_count > 0)
@@ -31,20 +35,45 @@
 
         // computer randomly chooses an option between (Rock, Paper, Scissors)
         function computerPlay() {
-            comChoice = choices[Math.floor(Math.random() * choices.length)];
-            console.log(comChoice);
+            compChoice = choices[Math.floor(Math.random() * choices.length)];
+            compChoice = compChoice.charAt(0).toUpperCase() + compChoice.slice(1);                    
         }
 
         userPlay();
         computerPlay();
-        // rock beats scissors
-
-        // paper beats rock
-
-        // scissors beats paper
+    
+        console.log(userChoice);
+        console.log(compChoice);
         
-        // tie means both choose again
+    
+        function result() {
+            if (userChoice === compChoice) {
+                alert(`You tied! Since you both chose ${compChoice} you have to go again!`);
+            }
+        // rock beats scissors
+            else if (userChoice === 'Rock' && compChoice === 'Scissors') {
+                alert(`Woah you took some damage off him! Your ${userChoice} beats the computers ${compChoice}`)
+            } else if (userChoice === 'Scissors' && compChoice === 'Rock') {
+                 alert(`That's gonna hurt! Your ${userChoice} got beat by the computers ${compChoice}`)
+            }
+        // paper beats rock
+            else if (userChoice === 'Paper' && compChoice === 'Rock') {
+                alert(`Woah you took some damage off him! Your ${userChoice} beats the computers ${compChoice}`)
+            } else if (userChoice === 'Rock' && compChoice === 'Paper') {
+                alert(`That's gonna hurt! Your ${userChoice} got beat by the computers ${compChoice}`)
+            }
+        // scissors beats paper
+            else if (userChoice === 'Scissors' && compChoice === 'Paper') {
+                alert(`Woah you took some damage off him! Your ${userChoice} beats the computers ${compChoice}`)
+            } else if (userChoice === 'Paper' && compChoice === 'Scissors') {
+                alert(`That's gonna hurt! Your ${userChoice} got beat by the computers ${compChoice}`)
+            }
+        }
 
+        result();
+    
+        
+        
         // if the user wins return message "You win! '(user answer) beats (computer answer)'"
         // if the user loses return message "You lose! '(computer answer) beats (user answer)"
 
