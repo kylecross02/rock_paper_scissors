@@ -13,9 +13,11 @@
     let roundWinner = '';
     let max_count = 5;
     
+    alert ('Can you beat the computer at Rock, Paper, Scissors? First to 5 points wins! The fate of humanity rests in your hands!')
     function game() {
         // create an array with the three options (Rock, Paper, Scissors)
         
+    
         const choices = ["rock", "paper", "scissors"];
         console.log(choices);
        
@@ -44,49 +46,67 @@
     
         console.log(userChoice);
         console.log(compChoice);
+
+        let response = "";
         
-    
-        function result() {
+        // prints a message telling user if they won or loss and what the choices were
+        function whoWins() {
             if (userChoice === compChoice) {
-                alert(`You tied! Since you both chose ${compChoice} you have to go again!`);
+                response = (`You tied! Since you both chose ${compChoice} you have to go again!`);
             }
-        // rock beats scissors
-            else if (userChoice === 'Rock' && compChoice === 'Scissors') {
-                alert(`Woah you took some damage off him! Your ${userChoice} beats the computers ${compChoice}`)
-            } else if (userChoice === 'Scissors' && compChoice === 'Rock') {
-                 alert(`That's gonna hurt! Your ${userChoice} got beat by the computers ${compChoice}`)
+        // if user wins
+            else if (
+                (userChoice === 'Rock' && compChoice === 'Scissors') ||
+                (userChoice === 'Paper' && compChoice === 'Rock') ||
+                (userChoice === 'Scissors' && compChoice === 'Paper')
+              ){ 
+                response = (`Woah you took some damage off him! Your ${userChoice} beats the computers ${compChoice}.`)
+                userScore++
+            } 
+        // if computer wins
+            else if (
+                (userChoice === 'Rock' && compChoice === 'Paper') ||
+                (userChoice === 'Paper' && compChoice === 'Scissors') ||
+                (userChoice === 'Scissors' && compChoice === 'Rock')
+              ){
+                response = (`That's gonna hurt! Your ${userChoice} got beat by the computers ${compChoice}.`)
+                 compScore++
             }
-        // paper beats rock
-            else if (userChoice === 'Paper' && compChoice === 'Rock') {
-                alert(`Woah you took some damage off him! Your ${userChoice} beats the computers ${compChoice}`)
-            } else if (userChoice === 'Rock' && compChoice === 'Paper') {
-                alert(`That's gonna hurt! Your ${userChoice} got beat by the computers ${compChoice}`)
-            }
-        // scissors beats paper
-            else if (userChoice === 'Scissors' && compChoice === 'Paper') {
-                alert(`Woah you took some damage off him! Your ${userChoice} beats the computers ${compChoice}`)
-            } else if (userChoice === 'Paper' && compChoice === 'Scissors') {
-                alert(`That's gonna hurt! Your ${userChoice} got beat by the computers ${compChoice}`)
-            }
+            alert(response + "\nThe score stands at your score = " + userScore + " and the computers score = " + compScore);
         }
 
-        result();
-    
-        
-        
-        // if the user wins return message "You win! '(user answer) beats (computer answer)'"
-        // if the user loses return message "You lose! '(computer answer) beats (user answer)"
+        whoWins();    
 
         // user vs computer score is kept and displayed
 
-        // game loops and plays five rounds and then resets
+        // game loops and plays firs to 5 roundwins and then resets
         
     }
+    
+    
+   
 
-    for (let i = 0; i <5; i++) {
+    for (let i = 0; i < 5; i++) {
         game();
+        
     }
     
+    if (userScore > compScore) {
+            alert(`You actually did it! You beat the computer with a score of ${userScore} to ${compScore}!`)
+        } else if (compScore > userScore) {
+            alert(`Oh no. You are now dead and the computer has beaten you and doomed humanity with a score of ${compScore} to ${userScore}!`)
+        } else if (compScore = userScore) {
+            alert(`You tied with a score of ${userScore} to ${compScore}! You're gonna have to play again to see if you're able to save humanity!`)
+        }
+
+    function resetGame() {
+        userScore = 0
+        compScore = 0
+    }
+    
+    resetGame();
+
+    game();
            
     </script>
 </body>
