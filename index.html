@@ -8,22 +8,20 @@
 </head>
 <body>
     <script>
-                
+    var max_count = 5;
+
+    function game() {
         // create an array with the three options (Rock, Paper, Scissors)
         const choices = ["rock", "paper", "scissors"];
         console.log(choices);
 
         // user chooses an option between (Rock, Paper, Scissors)
-        var max_count = 5;
+        
 
         function userPlay() {
             userChoice = prompt("Choose Rock, Paper, or Scissors! or die.");
-            if (userChoice === 'rock') {
-                alert('you chose rock');
-            } else if (userChoice === 'paper') {
-                alert('You chose paper');
-            } else if (userChoice === 'scissors') {
-                alert('You chose scissors');
+            if (userChoice === 'rock' || userChoice === 'paper' || userChoice === 'scissors') {
+            console.log(userChoice);
             } else {
                 alert('Not a valid response. Enter a valid response to live.')
                 if (--max_count > 0)
@@ -40,8 +38,11 @@
         userPlay();
         computerPlay();
         // rock beats scissors
+
         // paper beats rock
+
         // scissors beats paper
+        
         // tie means both choose again
 
         // if the user wins return message "You win! '(user answer) beats (computer answer)'"
@@ -50,7 +51,14 @@
         // user vs computer score is kept and displayed
 
         // game loops and plays five rounds and then resets
+        
+    }
 
+    for (let i = 0; i <5; i++) {
+        game();
+    }
+    
+           
     </script>
 </body>
 </html>
